@@ -17,7 +17,7 @@ def buildParseTree(fpExp):
             pStack.push(currentTree)
             currentTree = currentTree.getLeftChild()
 
-        elif i not in '+=*/':  # Operand
+        elif i not in '+=*/)':  # Operand
             currentTree.setRootVal(int(i))
             currentTree = pStack.pop()
 
@@ -27,6 +27,8 @@ def buildParseTree(fpExp):
             pStack.push(currentTree)
             currentTree = currentTree.getRightChild()
 
+        elif i in ')':
+            currentTree=pStack.pop()
         else:
             print("Error: I Don't recognize" + i)
 
